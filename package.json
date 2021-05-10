@@ -1,0 +1,15 @@
+{
+  "name": "vsa.humanize",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Yakov V. Ling",
+  "license": "MIT",
+  "dependencies": {
+    "@ling.black/log": "^1.0.0",
+    "dotenv": "^9.0.1",
+    "node-fetch": "^2.6.1"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}
