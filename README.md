@@ -13,4 +13,9 @@ token_url=https://oauth.vk.com/blank.html#access_token=23523525234&expires_in=86
 
 ## 3. Rename .env-demo to .env
 
-## 4. Run `node start`
+## 4. Run
+```yarn install```
+
+```yarn start```
+
+## 5. Profit!
