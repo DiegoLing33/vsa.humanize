@@ -29,6 +29,18 @@ async function readAllArray(path){
     return data;
 }
 
+async function readAllObject(path){
+    Logger.log("Discovering path:", path, "...")
+    const list = await fs.readdir(path);
+    let data = {};
+    for(const f of list){
+        Logger.log("File:", f);
+        const results = JSON.parse(String(await fs.readFile(path + "/" + f)));
+        data = {...data, ...results};
+    }
+    return data;
+}
+
 async function sleep(timeout) {
     return new Promise(resolve => {
         setTimeout(() => resolve(), timeout);
@@ -36,5 +48,5 @@ async function sleep(timeout) {
 }
 
 module.exports = {
-    isDir, isFile, makeDirIfCan, readAllArray, sleep,
+    isDir, isFile, makeDirIfCan, readAllArray, sleep, readAllObject,
 }
