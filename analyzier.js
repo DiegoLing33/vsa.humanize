@@ -42,8 +42,8 @@ async function readAllNames(key, n){
     Logger.log(key, "Female:", Object.keys(names.female).length);
     Logger.log(key, "Male:", Object.keys(names.male).length);
 
-    const female = filterByTrash(names.female);
-    const male = filterByTrash(names.male);
+    const female = filterByTrash(names.female, n);
+    const male = filterByTrash(names.male, n);
     Logger.log(key, "After filtering female:", female.length);
     Logger.log(key, "After filtering male:", male.length);
 
@@ -55,7 +55,7 @@ async function filterData(name, path){
     const interests = await readAllObject(path);
     Logger.log("Filtering " + name);
     Logger.log("Was count:", Object.keys(interests).length);
-    const filt = filterByTrash(interests);
+    const filt = filterByTrash(interests, name);
     Logger.log("New count:", filt.length);
     await saveResult(name, filt);
 }
@@ -64,11 +64,11 @@ async function saveResult(name, data){
     await fs.writeFile(rd + "/"+name+".json", JSON.stringify(data, null, 2));
 }
 
-function filterByTrash(items){
+function filterByTrash(items, k){
     const value = [];
     for(const key of Object.keys(items)){
         const val = items[key];
-        if(val >= process.env.interests_trash){
+        if(val >= process.env[k]){
             value.push([key, val]);
         }
     }
